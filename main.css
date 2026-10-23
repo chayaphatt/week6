@@ -1,75 +1,707 @@
+/* ==========================================================================
+   Modern & Premium Glassmorphism Design System for Register & Login Forms
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Color Palette - Vibrant Indigo, Soft Violet & Rose Pastels */
+    --primary: #7c3aed;
+    --primary-hover: #6d28d9;
+    --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #ec4899 100%);
+    --primary-glow: rgba(168, 85, 247, 0.4);
+
+    /* Pastel Purple / Pink Focus Palette */
+    --focus-border: #c084fc;
+    --focus-ring: rgba(192, 132, 252, 0.28);
+    --focus-glow: rgba(236, 72, 153, 0.18);
+
+    /* Reset / Clear Button Gradient */
+    --btn-reset-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+    --btn-reset-border: #cbd5e1;
+    --btn-reset-text: #475569;
+    --btn-reset-hover-gradient: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    --btn-reset-hover-border: #d8b4fe;
+    --btn-reset-hover-text: #7e22ce;
+
+    /* Background Mesh kept as original */
+    --bg-mesh-1: #e0e7ff;
+    --bg-mesh-2: #fae8ff;
+    --bg-mesh-3: #fce7f3;
+    --bg-base: #f8fafc;
+
+    /* Glassmorphism Card Surface */
+    --surface-glass: rgba(255, 255, 255, 0.82);
+    --surface-border: rgba(255, 255, 255, 0.88);
+    --surface-input: rgba(248, 250, 252, 0.78);
+    --surface-input-focus: #ffffff;
+    --input-border: #e2e8f0;
+    --input-border-hover: #cbd5e1;
+
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --text-accent: #7c3aed;
+
+    --error-bg: #fef2f2;
+    --error-border: #fecaca;
+    --error-text: #dc2626;
+
+    /* Shadows & Depth */
+    --shadow-card: 
+        0 25px 60px -15px rgba(124, 58, 237, 0.14),
+        0 15px 30px -5px rgba(236, 72, 153, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.9) inset,
+        0 2px 4px rgba(0, 0, 0, 0.02);
+    --shadow-card-hover:
+        0 30px 70px -15px rgba(124, 58, 237, 0.2),
+        0 18px 36px -5px rgba(236, 72, 153, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.95) inset;
+    
+    --shadow-input-inset: inset 0 2px 4px rgba(0, 0, 0, 0.028);
+    --shadow-input-focus: 
+        0 0 0 4px var(--focus-ring),
+        0 0 18px var(--focus-glow),
+        inset 0 1px 2px rgba(0, 0, 0, 0.01);
+    
+    --shadow-button-primary: 
+        0 8px 24px -4px rgba(168, 85, 247, 0.42),
+        0 3px 8px -2px rgba(236, 72, 153, 0.3);
+    --shadow-button-hover: 
+        0 14px 30px -4px rgba(168, 85, 247, 0.55),
+        0 6px 14px -2px rgba(236, 72, 153, 0.38);
+    --shadow-button-reset:
+        0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-button-reset-hover:
+        0 8px 20px -4px rgba(192, 132, 252, 0.28);
+
+    /* Radii & Transitions */
+    --radius-card: 24px;
+    --radius-input: 14px;
+    --radius-pill: 9999px;
+    --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    background-color: #eaa8d0; 
-    display: flex;
-    justify-content: center; 
-    align-items: flex-start; 
-    padding-top: 50px; 
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 44px 20px;
+    background-color: var(--bg-base);
+    background-image: 
+        radial-gradient(at 0% 0%, var(--bg-mesh-3) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, var(--bg-mesh-1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, var(--bg-mesh-2) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, #e0e7ff 0px, transparent 50%);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+    color: var(--text-primary);
 }
 
-form {
-    background-color: #eaa8d0;
-    padding: 25px;
-    border: 1px solid #ccc; 
+/* Atmospheric Ambient Glowing Orbs */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.65;
+    animation: floatAmbient 18s ease-in-out infinite alternate;
+}
+
+body::before {
+    width: 440px;
+    height: 440px;
+    top: -100px;
+    left: -100px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, rgba(99, 102, 241, 0.25) 100%);
+}
+
+body::after {
+    width: 480px;
+    height: 480px;
+    bottom: -120px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(244, 114, 182, 0.4) 0%, rgba(139, 92, 246, 0.2) 100%);
+    animation-delay: -9s;
+}
+
+@keyframes floatAmbient {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(40px, 30px) scale(1.12);
+    }
+}
+
+/* ==========================================================================
+   Page Container & Form Wrapper
+   ========================================================================== */
+
+.page-wrapper {
     width: 100%;
-    max-width: 380px; 
+    max-width: 530px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.page-wrapper.login-mode {
+    max-width: 440px;
+}
+
+/* Main Card Container with Enhanced Glassmorphism & Soft Drop Shadow */
+form {
+    background: var(--surface-glass);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-card);
+    padding: 42px 40px 36px 40px;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
+    position: relative;
+    width: 100%;
+}
+
+form:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(255, 255, 255, 0.95);
+}
 
 fieldset {
     border: none;
     padding: 0;
-    margin-bottom: 20px;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Form Header & Typography Hierarchy
+   ========================================================================== */
+
+.form-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.header-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 16px auto;
+    border-radius: 20px;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 10px 22px -4px var(--primary-glow);
+    transition: var(--transition);
+}
+
+.header-icon-wrapper:hover {
+    transform: scale(1.08) rotate(-4deg);
+    box-shadow: 0 14px 28px -4px var(--primary-glow);
+}
+
+.header-icon-wrapper svg {
+    width: 28px;
+    height: 28px;
 }
 
 legend {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 1.72rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+    display: block;
+    width: 100%;
+    text-align: center;
 }
 
+.form-subtitle {
+    font-size: 0.93rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 8px;
+}
+
+/* Badge for requirement info */
+.required-info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(168, 85, 247, 0.09);
+    border: 1px solid rgba(168, 85, 247, 0.18);
+    color: var(--primary);
+    font-size: 0.79rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    margin-top: 6px;
+}
+
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+/* ==========================================================================
+   Error Alert Message Box (#errormsg)
+   ========================================================================== */
+
+#errormsg {
+    display: none;
+    width: 100%;
+    background-color: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error-text);
+    padding: 12px 16px;
+    border-radius: var(--radius-input);
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.45;
+    margin-bottom: 22px;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.08);
+}
+
+/* Display error message automatically when populated with text */
+#errormsg:not(:empty) {
+    display: flex;
+    animation: shakeAlert 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+#errormsg::before {
+    content: '⚠️';
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+
+@keyframes shakeAlert {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+    40%, 60% { transform: translate3d(3px, 0, 0); }
+}
+
+/* Info Box / Notification for Login query params */
+.info-hint-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: #047857;
+    padding: 12px 16px;
+    border-radius: var(--radius-input);
+    font-size: 0.86rem;
+    font-weight: 500;
+    margin-bottom: 22px;
+}
+
+/* ==========================================================================
+   Form Fields, Inset Shadow & Pastel Glow Focus States
+   ========================================================================== */
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.req-star {
+    color: #ef4444;
+    margin-left: 3px;
+    font-weight: 700;
+}
+
+/* Modern Input Controls with Inset Shadow & Pastel Glow */
+.input-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: #94a3b8;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    z-index: 2;
+}
+
+.input-icon svg {
+    width: 19px;
+    height: 19px;
+}
 
 input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="date"] {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 12px; 
-    border: 1px solid #ddd;
+    height: 48px;
+    padding: 0 14px 0 44px;
+    font-size: 0.93rem;
+    color: var(--text-primary);
+    background-color: var(--surface-input);
+    border: 1.5px solid var(--input-border);
+    border-radius: var(--radius-input);
+    box-shadow: var(--shadow-input-inset);
+    transition: var(--transition);
+    outline: none;
 }
 
+/* Input when icon is not present */
+.no-icon input[type="text"],
+.no-icon input[type="password"],
+.no-icon input[type="email"],
+.no-icon input[type="date"] {
+    padding-left: 14px;
+}
+
+/* Placeholder styling */
+input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+/* Hover State */
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="date"]:hover {
+    border-color: var(--input-border-hover);
+    background-color: #ffffff;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+/* Premium Pastel Violet/Pink Glowing Focus State */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+    border-color: var(--focus-border);
+    background-color: var(--surface-input-focus);
+    box-shadow: var(--shadow-input-focus);
+    transform: translateY(-1.5px);
+}
+
+.input-control:focus-within .input-icon {
+    color: #a855f7;
+}
+
+/* Date Input Specifics */
+input[type="date"] {
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text-primary);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    filter: invert(0.2);
+}
+
+input[type="date"]:hover::-webkit-calendar-picker-indicator,
+input[type="date"]:focus::-webkit-calendar-picker-indicator {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Gender Interactive Cards / Segmented Options
+   ========================================================================== */
+
+.gender-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.gender-card {
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+}
+
+.gender-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.gender-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 46px;
+    padding: 0 12px;
+    background: var(--surface-input);
+    border: 1.5px solid var(--input-border);
+    border-radius: var(--radius-input);
+    box-shadow: var(--shadow-input-inset);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: var(--transition);
+    user-select: none;
+}
+
+.gender-card:hover .gender-content {
+    border-color: var(--input-border-hover);
+    background: #ffffff;
+    transform: translateY(-1.5px);
+}
+
+/* Radio Checked State with Pastel Glow */
+.gender-card input[type="radio"]:checked + .gender-content {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(236, 72, 153, 0.08) 100%);
+    border-color: var(--focus-border);
+    color: #6b21a8;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(192, 132, 252, 0.22);
+    transform: translateY(-1.5px);
+}
+
+.gender-icon {
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   Action Buttons (Register, Login, Reset, Clear) with Gradients & Hover Effects
+   ========================================================================== */
+
+.button-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 28px;
+}
 
 input[type="submit"],
 input[type="reset"] {
-    padding: 10px 15px;
-    border: none;
+    height: 48px;
+    padding: 0 22px;
+    border-radius: var(--radius-input);
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
-    margin-right: 10px;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    outline: none;
 }
 
-
+/* Primary Button (Register / Login) */
 input[type="submit"] {
-    background-color: #007bff;
-    color: white;
+    flex: 1.4;
+    background: var(--primary-gradient);
+    color: #ffffff;
+    border: none;
+    box-shadow: var(--shadow-button-primary);
+    letter-spacing: -0.01em;
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-button-hover);
+    filter: brightness(1.04);
 }
 
-input[type="reset"] {
-    background-color: #6c757d; 
-    color: white;
+input[type="submit"]:active {
+    transform: translateY(-0.5px);
+    box-shadow: var(--shadow-button-primary);
+    filter: brightness(0.98);
 }
-span {
-    color: red; 
+
+/* Secondary Button (Reset / Clear) with Gentle Soft Gradient & Hover Sheen */
+input[type="reset"] {
+    flex: 1;
+    background: var(--btn-reset-gradient);
+    color: var(--btn-reset-text);
+    border: 1.5px solid var(--btn-reset-border);
+    box-shadow: var(--shadow-button-reset);
+}
+
+input[type="reset"]:hover {
+    background: var(--btn-reset-hover-gradient);
+    color: var(--btn-reset-hover-text);
+    border-color: var(--btn-reset-hover-border);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-button-reset-hover);
+}
+
+input[type="reset"]:active {
+    transform: translateY(-0.5px);
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   Card Footer & Switch Links
+   ========================================================================= */
+
+.form-footer-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(226, 232, 240, 0.85), transparent);
+    margin: 26px 0 20px 0;
+}
+
+.switch-page-prompt {
+    text-align: center;
+    font-size: 0.89rem;
+    color: var(--text-muted);
+}
+
+.switch-page-prompt a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.switch-page-prompt a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--primary-gradient);
+    transition: width 0.22s ease-in-out;
+}
+
+.switch-page-prompt a:hover {
+    color: #a855f7;
+}
+
+.switch-page-prompt a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* ==========================================================================
+   Responsive Adaptations (Tablet & Mobile)
+   ========================================================================== */
+
+@media (max-width: 640px) {
+    body {
+        padding: 24px 14px;
+        align-items: flex-start;
+    }
+
+    form {
+        padding: 30px 22px 26px 22px;
+        border-radius: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .gender-options-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .gender-content {
+        height: 44px;
+        justify-content: flex-start;
+        padding-left: 14px;
+    }
+
+    .button-actions-group {
+        flex-direction: column-reverse;
+        gap: 12px;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+        width: 100%;
+        height: 46px;
+    }
+
+    legend {
+        font-size: 1.48rem;
+    }
+}
+
+@media (max-width: 380px) {
+    body {
+        padding: 16px 10px;
+    }
+
+    form {
+        padding: 26px 16px 22px 16px;
+    }
+
+    legend {
+        font-size: 1.35rem;
+    }
 }

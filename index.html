@@ -1,47 +1,184 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
 	<meta charset='utf-8'>
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-	<title>Page Title</title>
+	<title>ลงทะเบียนผู้ใช้ใหม่ | Register Account</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name="description" content="หน้าลงทะเบียนผู้ใช้งานใหม่ ระบบสมาชิกพรีเมียม สวยงาม ทันสมัย">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 	<script src='register.js'></script>
 </head>
 <body>
-	<form name="myRegister" id="myRegister" action="login.html">
-		<fieldset>
-			<legend>Register</legend>
-			<span>* require</span> <br>
-			<span id="errormsg"></span> <br>
-			First name*: 
-			<input type="text" name="firstname" required>
-			Last name*: 
-			<input type="text" name="lastname" >
-			<br>
-			Gender*: 
-			<input type="radio" name="gender" value="male" >Male
-			<input type="radio" name="gender" value="female" >Female
-			<input type="radio" name="gender" value="female" >Other
-			<br>
-			Birthday*: 
-			<input type="date" name="bday" value="" >
-			<br>
-			Email address*: 
-			<input type="email" name="email" >
-			<br>
-			Username*: 
-			<input type="text" name="username" >
-			<br>
-			Password*: 
-			<input type="password" name="password" required>
-			<br>
-			Retype Password*: 
-			<input type="password" name="password" required>
-			<br>
-			<input type="submit" value="Register">
-			<input type="reset" value="Reset">
-		</fieldset>
-	</form>
+	<main class="page-wrapper">
+		<form name="myRegister" id="myRegister" action="login.html" method="get">
+			<fieldset>
+				<!-- Form Header -->
+				<header class="form-header">
+					<div class="header-icon-wrapper" aria-hidden="true">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+							<circle cx="9" cy="7" r="4"></circle>
+							<line x1="19" y1="8" x2="19" y2="14"></line>
+							<line x1="22" y1="11" x2="16" y2="11"></line>
+						</svg>
+					</div>
+					<legend>สร้างบัญชีใหม่</legend>
+					<p class="form-subtitle">กรอกข้อมูลของคุณเพื่อลงทะเบียนเข้าสู่ระบบ</p>
+					<div class="required-info-badge">
+						<span class="badge-dot"></span>
+						<span>ช่องที่มีเครื่องหมาย <span class="req-star">*</span> จำเป็นต้องกรอก</span>
+					</div>
+				</header>
+
+				<!-- Error Message Box (Handled by register.js) -->
+				<div id="errormsg" role="alert"></div>
+
+				<!-- First Name & Last Name (Responsive 2 Columns) -->
+				<div class="form-row">
+					<div class="form-group">
+						<label for="firstname">ชื่อจริง (First Name)<span class="req-star">*</span></label>
+						<div class="input-control">
+							<span class="input-icon" aria-hidden="true">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+									<circle cx="12" cy="7" r="4"></circle>
+								</svg>
+							</span>
+							<input type="text" id="firstname" name="firstname" placeholder="เช่น กิตติพงษ์" required autocomplete="given-name">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="lastname">นามสกุล (Last Name)<span class="req-star">*</span></label>
+						<div class="input-control">
+							<span class="input-icon" aria-hidden="true">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+									<circle cx="12" cy="7" r="4"></circle>
+								</svg>
+							</span>
+							<input type="text" id="lastname" name="lastname" placeholder="เช่น พงษ์ศิริ" required autocomplete="family-name">
+						</div>
+					</div>
+				</div>
+
+				<!-- Gender Selection -->
+				<div class="form-group">
+					<label>เพศ (Gender)<span class="req-star">*</span></label>
+					<div class="gender-options-grid">
+						<label class="gender-card">
+							<input type="radio" name="gender" value="male" required>
+							<span class="gender-content">
+								<span class="gender-icon">👨</span>
+								<span>ชาย (Male)</span>
+							</span>
+						</label>
+						<label class="gender-card">
+							<input type="radio" name="gender" value="female">
+							<span class="gender-content">
+								<span class="gender-icon">👩</span>
+								<span>หญิง (Female)</span>
+							</span>
+						</label>
+						<label class="gender-card">
+							<input type="radio" name="gender" value="other">
+							<span class="gender-content">
+								<span class="gender-icon">✨</span>
+								<span>อื่นๆ (Other)</span>
+							</span>
+						</label>
+					</div>
+				</div>
+
+				<!-- Birthday -->
+				<div class="form-group">
+					<label for="bday">วันเกิด (Birthday)<span class="req-star">*</span></label>
+					<div class="input-control">
+						<span class="input-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+								<line x1="16" y1="2" x2="16" y2="6"></line>
+								<line x1="8" y1="2" x2="8" y2="6"></line>
+								<line x1="3" y1="10" x2="21" y2="10"></line>
+							</svg>
+						</span>
+						<input type="date" id="bday" name="bday" value="" required>
+					</div>
+				</div>
+
+				<!-- Email Address -->
+				<div class="form-group">
+					<label for="email">อีเมล (Email Address)<span class="req-star">*</span></label>
+					<div class="input-control">
+						<span class="input-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+						</span>
+						<input type="email" id="email" name="email" placeholder="example@email.com" required autocomplete="email">
+					</div>
+				</div>
+
+				<!-- Username -->
+				<div class="form-group">
+					<label for="username">ชื่อผู้ใช้ (Username)<span class="req-star">*</span></label>
+					<div class="input-control">
+						<span class="input-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="4"></circle>
+								<path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+							</svg>
+						</span>
+						<input type="text" id="username" name="username" placeholder="ระบุชื่อผู้ใช้สำหรับล็อกอิน" required autocomplete="username">
+					</div>
+				</div>
+
+				<!-- Password -->
+				<div class="form-group">
+					<label for="password">รหัสผ่าน (Password)<span class="req-star">*</span></label>
+					<div class="input-control">
+						<span class="input-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+								<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+							</svg>
+						</span>
+						<input type="password" id="password" name="password" placeholder="ตั้งรหัสผ่านของคุณ" required autocomplete="new-password">
+					</div>
+				</div>
+
+				<!-- Retype Password -->
+				<div class="form-group">
+					<label for="retype_password">ยืนยันรหัสผ่าน (Retype Password)<span class="req-star">*</span></label>
+					<div class="input-control">
+						<span class="input-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+							</svg>
+						</span>
+						<input type="password" id="retype_password" name="password" placeholder="กรอกรหัสผ่านอีกครั้งเพื่อยืนยัน" required autocomplete="new-password">
+					</div>
+				</div>
+
+				<!-- Buttons Action Group -->
+				<div class="button-actions-group">
+					<input type="submit" value="ลงทะเบียน (Register)">
+					<input type="reset" value="ล้างข้อมูล (Reset)">
+				</div>
+
+				<!-- Card Footer Link -->
+				<div class="form-footer-divider"></div>
+				<p class="switch-page-prompt">
+					มีบัญชีอยู่แล้ว? <a href="login.html">เข้าสู่ระบบที่นี่ (Log in)</a>
+				</p>
+			</fieldset>
+		</form>
+	</main>
 </body>
 </html>
